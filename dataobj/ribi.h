@@ -80,7 +80,7 @@ public:
 	static const hang_t::typ hang_from_ribi[16];
 
 	//
-	// Ranges werden nicht geprüft!
+	// Ranges werden nicht geprft!
 	//
 	static bool ist_einfach(typ x) { return (flags[x] & einfach) != 0; }
 	static bool ist_wegbar(typ x)  { return (flags[x] & (wegbar_ns | wegbar_ow)) != 0; }
@@ -134,6 +134,7 @@ public:
 
 /**
  * Directions in simutrans
+ Richtungs Bit = direction bit
  * ribi_t = Richtungs-Bit = Directions-Bitfield
  * @author Hj. Malthaner
  */
@@ -150,22 +151,22 @@ public:
 	 * richtungsbits (ribi) koennen 16 Komb. darstellen.
 	 */
 	enum _ribi {
-		keine=0,
-		nord = 1,
-		ost = 2,
-		nordost = 3,
-		sued = 4,
-		nordsued = 5,
-		suedost = 6,
-		nordsuedost = 7,
-		west = 8,
-		nordwest = 9,
-		ostwest = 10,
-		nordostwest = 11,
-		suedwest = 12,
-		nordsuedwest = 13,
-		suedostwest = 14,
-		alle = 15
+		keine=0, //no
+		nord = 1, //north
+		ost = 2,  //east
+		nordost = 3, //north east
+		sued = 4,  //south
+		nordsued = 5, //north south
+		suedost = 6, //south east
+		nordsuedost = 7, //north south east
+		west = 8, //west
+		nordwest = 9,  //north west
+		ostwest = 10, //east west
+		nordostwest = 11,  //north east west
+		suedwest = 12, //south west
+		nordsuedwest = 13, //north south west
+		suedostwest = 14, //south east west
+		alle = 15 //all
 	};
 	typedef uint8 ribi;
 
@@ -195,8 +196,8 @@ public:
 	static const ribi nsow[4];
 	static const ribi layout_to_ribi[4];	// building layout to ribi (for four rotations, for two use doppelt()!
 	//
-	// Alle Abfragen über statische Tabellen wg. Performance
-	// Ranges werden nicht geprüft!
+	// Alle Abfragen ber statische Tabellen wg. Performance
+	// Ranges werden nicht geprft!
 	//
 	static bool is_twoway(ribi x) { return (flags[x]&twoway)!=0; }
 	static bool is_threeway(ribi x) { return (flags[x]&threeway)!=0; }

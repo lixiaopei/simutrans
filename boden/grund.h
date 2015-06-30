@@ -90,13 +90,30 @@ template<typename T> static inline T* obj_cast(obj_t* const d)
  * in den Subklassen redefiniert.</p>
  *
  * @author Hj. Malthaner
+boden:地面、地板
+tunnel boden 隧道地面
+bruecken 桥梁
+wasser  水
+fundament  base for all building
+Monorail  单轨,列车的轨道
+
+
+
+boden_t--------------->tunnelboden_t 
+brueckenboden_t
+fundament_t
+monoraiboden_t
+wasser_t
  */
 class grund_t
 {
 public:
 	/**
-	 * Flag-Werte f�r das neuzeichnen ge�nderter Untergr�nde
+	 * Flag-Werte fr das neuzeichnen genderter Untergrnde
+	 Flag values for the new record genderter Untergrnde
 	 * @author Hj. Malthaner
+	 keine = no
+	 karten = map
 	 */
 	enum flag_values {
 		keine_flags=0,
@@ -188,12 +205,22 @@ protected:
 	static karte_ptr_t welt;
 
 	// calculates the slope image and sets the draw_as_obj flag correctly
+	//bild = image
 	void calc_back_bild(const sint8 hgt,const sint8 slope_this);
 
 	// this is the real image calculation, called for the actual ground image
 	virtual void calc_bild_internal(const bool calc_only_snowline_change) = 0;
 
 public:
+	//enum  typ { boden = 1, wasser, fundament, tunnelboden, brueckenboden, monorailboden };
+	/*
+	boden : 地面
+	wasser: 水
+	fundament: 建筑基础
+	tunnelboden: 隧道地面
+	brueckenboden: 桥梁地面
+	monorailboden: 单轨地面
+	*/
 	enum typ { boden = 1, wasser, fundament, tunnelboden, brueckenboden, monorailboden };
 
 	grund_t(loadsave_t *file);
@@ -234,6 +261,9 @@ public:
 	/**
 	 * Dient zur Neuberechnung des Bildes, wenn sich die Umgebung
 	 * oder die Lage (Hang) des grundes geaendert hat.
+	 
+	 Is used for the recalculation of the image, if is the environment
+     or the situation (slope) of the reason has changed.
 	 * @author Hj. Malthaner
 	 */
 	void calc_bild();
@@ -288,6 +318,7 @@ public:
 	* Auffforderung, ein Infofenster zu oeffnen.
 	* Oeffnet standardmaessig kein Infofenster.
 	* @author Hj. Malthaner
+	zeige_info = show info
 	*/
 	void zeige_info();
 
@@ -295,6 +326,7 @@ public:
 	* Gibt die Farbe des Beschreibungstexthintergrundes zuurck
 	* @return die Farbe des Beschreibungstexthintergrundes.
 	* @author Hj. Malthaner
+	text_farbe = text_color
 	*/
 	PLAYER_COLOR_VAL text_farbe() const;
 
@@ -304,6 +336,7 @@ public:
 	 */
 	void set_text(const char* text);
 
+	//natur = nature 
 	virtual bool ist_natur() const {return false;}
 	virtual bool ist_wasser() const {return false;}
 
@@ -337,6 +370,7 @@ public:
 	/**
 	* returns powerline here
 	* @author Kieron Green
+	get_leitung = get cable
 	*/
 	leitung_t *get_leitung() const { return (leitung_t *) objlist.get_leitung(); }
 
@@ -344,6 +378,7 @@ public:
 	* Laedt oder speichert die Daten des Untergrundes in eine Datei.
 	* @param file Zeiger auf die Datei in die gespeichert werden soll.
 	* @author Hj. Malthaner
+	rdwr = read
 	*/
 	virtual void rdwr(loadsave_t *file);
 
@@ -369,17 +404,18 @@ public:
 	inline void set_pos(koord3d newpos) { pos = newpos;}
 
 	// slope are now maintained locally
+	//get basic notes 
 	hang_t::typ get_grund_hang() const { return (hang_t::typ)slope; }
 	void set_grund_hang(hang_t::typ sl) { slope = sl; }
 
 	/**
-	 * Manche B�den k�nnen zu Haltestellen geh�ren.
+	 * Manche Bden knnen zu Haltestellen gehren.
 	 * @author Hj. Malthaner
 	 */
 	void set_halt(halthandle_t halt);
 
 	/**
-	 * Ermittelt, ob dieser Boden zu einer Haltestelle geh�rt.
+	 * Ermittelt, ob dieser Boden zu einer Haltestelle gehrt.
 	 * @return NULL wenn keine Haltestelle, sonst Zeiger auf Haltestelle
 	 * @author Hj. Malthaner
 	 */
@@ -388,6 +424,7 @@ public:
 
 	/**
 	 * @return The height of the tile.
+	 hoehe = height
 	 */
 	inline sint8 get_hoehe() const {return pos.z;}
 
@@ -629,6 +666,7 @@ public:
 	* Inline da sehr oft aufgerufen.
 	* Sucht einen Weg vom typ 'typ' auf diesem Untergrund.
 	* @author Hj. Malthaner
+	weg = away
 	*/
 	weg_t *get_weg(waytype_t typ) const {
 		if (weg_t* const w = get_weg_nr(0)) {
@@ -679,7 +717,7 @@ public:
 
 	/**
 	* Ermittelt die Richtungsbits furr den weg vom Typ 'typ' unmaskiert.
-	* Dies wird beim Bauen ben�tigt. Furr die Routenfindung werden die
+	* Dies wird beim Bauen bentigt. Furr die Routenfindung werden die
 	* maskierten ribis benutzt.
 	* @author Hj. Malthaner/V. Meyer
 	*
@@ -700,7 +738,7 @@ public:
 	virtual sint8 get_weg_yoff() const { return 0; }
 
 	/**
-	* Hat der Boden mindestens ein weg_t-Objekt? Liefert false f�r Wasser!
+	* Hat der Boden mindestens ein weg_t-Objekt? Liefert false fr Wasser!
 	* @author V. Meyer
 	*/
 	inline bool hat_wege() const { return (flags&(has_way1|has_way2))!=0;}

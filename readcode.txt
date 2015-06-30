@@ -1,0 +1,140 @@
+1. karte = map
+2. perlin hoehe  = perlin noise
+    http://book.douban.com/reading/33503523/
+	http://devmag.org.za/2009/04/25/perlin-noise/
+3.koord = coord
+4. Einstellungen = settings
+5. zeiger = pointer
+6. ambient = 环境
+7. appropriate = 适当
+8. grund = reason
+9. grund wasser = ground water
+10. fabrik = factory
+11. gebaeude = building
+12. ausflugsziele = Attractions 旅游景点
+13. stadt = city
+14. karte ansicht = map view
+15. quadrat = square
+16. weg = away   besch = dam
+17. beaches = 沙滩
+18. mittlere = average einwohnerzahl= population
+19. betrag = amount
+20. zeit = time
+21. schlaf = sleep 
+22. drain = 排水
+23. flood = 洪水
+24. welt = 世界
+25. convois = convoys = 车队
+26. stadt = city 
+27. gebaeude = building
+28. suche naechste stadt = Search nearest town
+29. ware = goods, products;     bauer = farmer 
+30. ziel = target, zwischenziel=interim target=中期目标
+31. preis = price, mass = degree=度, freight=货物, menge=quantity=数量
+32. revenue = Revenue = 收入, diagonally = 斜, yard = 码,
+33. enum climate
+{
+	water_climate = 0,
+	desert_climate,  //沙漠气候
+	tropic_climate,  //热带气候
+	mediterran_climate, //地中海气候
+	temperate_climate, //温带气候
+	tundra_climate, //苔原气候
+	rocky_climate, //洛基气候
+	arctic_climate, //
+	MAX_CLIMATES
+};
+34. Vordefinierte = 预定义
+enum waytype_t {
+	invalid_wt       =  -1,
+	ignore_wt        =   0,
+	road_wt          =   1,
+	track_wt         =   2,
+	water_wt         =   3,
+	overheadlines_wt =   4, //架空线
+	monorail_wt      =   5, //单轨
+	maglev_wt        =   6, //磁悬浮
+	tram_wt          =   7, //电车
+	narrowgauge_wt   =   8, //窄轨
+	air_wt           =  16,
+	powerline_wt     = 128 //电源线
+};
+35. wege = paths = 路径, tunnel = 隧道, depot=仓库, pedestrians=行人,reservation=预定,convoy=护航,curiosity=好奇心,skin verwaltung=skin management,gadget=小工具,
+36. meldung=message,neujahr=new year,neuewelt=new world,flaggen=flags,
+37. zughalt=train stop,autohalt=Car maintenance,schiffshalt=ship maintenance,airhalt=air maintenance,monorailhalt=Monorail stop=单轨铁道站,maglevhalt=磁悬浮站点
+    narrowgaugehalt=窄轨站,bushalt=公交车站,tramhalt=电车站
+38. passagiere = 乘客, belegtzeiger=occupied pointer,fussweg=walk way,senke=depression=萧条
+39. 
+enum typ {
+		undefined=-1, 
+		obj=0, 
+		baum=1,      //balum = tree
+		zeiger=2,    //zeiger = pointer
+		wolke=3,      //wolke = cloud
+		sync_wolke=4,  
+		async_wolke=5,
+
+		gebaeude=7,	// animated buildings (6 not used any more), gebaeude=building
+		signal=8,   //
+
+		bruecke=9,  //bridge,桥
+		tunnel=10,  //隧道
+		bahndepot=12,  //train depot, 火车仓库
+		strassendepot=13, //strassen = roads 
+		schiffdepot = 14, // schiff = ship
+
+		raucher=15, // obsolete raucher = smoker
+		leitung = 16,  //leitung = line
+		pumpe = 17,  //pumpe = pump = 泵
+		senke = 18,  //senke = depression = 萧条
+		roadsign = 19, //roadsign = 路标
+		pillar = 20,//pillar = 支柱
+
+		airdepot = 21, 
+		monoraildepot=22,  //monorail = 单轨
+		tramdepot=23,  //tram = 电车
+		maglevdepot=24,//maglev = 磁悬浮
+
+		wayobj = 25,
+		way = 26, // since 99.04 ways are normal things and stored in the objliste_t!
+
+		label = 27,	// indicates ownership
+		field = 28,
+		crossing = 29,
+		groundobj = 30, // lakes, stones
+
+		narrowgaugedepot=31, //narrow gauge = 窄轨
+
+		// after this only moving stuff
+		// reserved values for vehicles: 64 to 95
+		pedestrian=64, //pedestrian = 行人
+		road_user=65,
+		road_vehicle=66,
+		rail_vehicle=67,
+		monorail_vehicle=68,
+		maglev_vehicle=69,
+		narrowgauge_vehicle=70,
+		water_vehicle=80,
+		air_vehicle=81,
+		movingobj=82,
+
+		// other new objs (obsolete, only used during loading old games
+		// lagerhaus = 24, (never really used)
+		// gebaeude_alt=6,	(very, very old?)
+		old_gebaeudefundament=11,	// wall below buildings, not used any more
+		old_automobil=32, old_waggon=33,
+		old_schiff=34, old_aircraft=35, old_monorailwaggon=36,
+		old_verkehr=41,
+		old_fussgaenger=42,
+		old_choosesignal = 95,
+		old_presignal = 96,
+		old_roadsign = 97,
+		old_pillar = 98,
+		old_airdepot = 99,
+		old_monoraildepot=100,
+		old_tramdepot=101,
+	};
+	
+	
+	40. gebaeude = building,vehikel=vehicle,sucher = viewfinder = 取景器,platz=space,neu=new,naechste=next,liste=list,spalten=cleave=劈开,reihe=series,quadrant=象限,
+	    beste = best,
